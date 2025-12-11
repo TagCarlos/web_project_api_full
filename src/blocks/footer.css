@@ -1,0 +1,10 @@
+.footer{
+    color: rgba(84, 84, 84, 1);
+    margin: 30px 30px 30px 0;
+}
+
+@media screen and (max-width: 320px) {
+    .footer{
+        padding-left: 10px;
+    }
+}

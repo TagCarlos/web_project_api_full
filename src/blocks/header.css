@@ -1,0 +1,115 @@
+.header__title {
+  font-size: 35px;
+  border-bottom: 1px solid rgba(84, 84, 84, 1);
+}
+
+.header__subtitle {
+  font-size: 10px;
+  vertical-align: top;
+}
+.header__container {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.header__image {
+  max-width: 170px;
+  border-radius: 80%;
+  object-fit: cover;
+}
+
+.header__avatar {
+  position: absolute;
+  top: 80px;
+  left: 80px;
+  opacity: 0;
+}
+
+.header__avatar:hover {
+  opacity: 1;
+}
+
+.header__name {
+  font-size: 42px;
+}
+
+.header__activity {
+  font-size: 18px;
+}
+
+.header__button_edit {
+  background: none;
+  color: white;
+  border-color: white;
+  height: 20px;
+  align-self: center;
+  margin-bottom: 40px;
+}
+
+.header__button_edit:hover {
+  opacity: 0.5;
+}
+
+.header__form {
+  display: block;
+  position: relative;
+}
+
+.header__button_add {
+  display: flex;
+  width: 150px;
+  height: 50px;
+  background: none;
+  color: white;
+  border-color: white;
+  font-size: 59px;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+
+.header__button_add:hover {
+  opacity: 0.5;
+}
+
+.header__login {
+  font-size: 18px;
+  text-decoration: none;
+  color: white;
+  margin-right: 20px;
+}
+
+.header__login:hover {
+  opacity: 0.5;
+}
+
+.header__register {
+  font-size: 18px;
+  text-decoration: none;
+  color: white;
+}
+
+.header__register:hover {
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 320px) {
+  .header__container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header__avatar {
+    left: 140px;
+  }
+
+  .header__name {
+    text-align: center;
+  }
+
+  .header__activity {
+    text-align: center;
+  }
+}

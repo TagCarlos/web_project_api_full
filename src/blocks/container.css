@@ -1,0 +1,87 @@
+.container{
+    display: grid;
+    grid-template-columns: repeat(3, 32%);
+    gap: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    justify-content: center;
+}
+.container__cards{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-top: 15px;
+}
+.container__image{
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 80%;
+}
+
+.container__hearts{
+    display: flex;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.container__title{
+    margin: 0;
+    color: black;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.container__heart{
+    background: transparent url(../Images/heart.png) center no-repeat;
+    border: none;
+    width: 21px;
+    height: 19px;
+}
+
+.container__heart:hover{
+    opacity: .5;
+}
+
+.container__heart_active{
+    background: transparent url(../Images/like-active.png) center no-repeat;
+    
+
+}
+
+.container__trash{
+    background: transparent url(../Images/Trash.png) no-repeat;
+    width: 18px;
+    height: 19px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border: none;
+}
+
+.container__trash:hover{
+    opacity: .5;
+}
+
+@media screen and (max-width: 768px) {
+    .container{
+        grid-template-columns: repeat(2, 47%);
+        grid-template-rows: repeat(3, 32%);
+        justify-content: center;
+    }
+}
+@media screen and (max-width : 320px) {
+    .container{
+        display: block;
+        margin: 5px;
+    }
+
+}

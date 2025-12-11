@@ -1,0 +1,189 @@
+.popup {
+  /* display: none; */
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  display: flex;
+}
+
+.popup_opened {
+  display: flex;
+  width: 100%;
+}
+
+.popup__form {
+  position: relative;
+  color: black;
+  padding: 20px;
+  border-radius: 5px;
+  width: 430px;
+  background-color: white;
+}
+
+.popup__button_close {
+  position: absolute;
+  right: 0;
+  top: -25%;
+  background-color: transparent;
+  border: none;
+  font-size: 50px;
+  color: white;
+}
+
+.popup__button_close:hover {
+  opacity: 0.5;
+}
+
+.popup__title {
+  padding: 10px 0 0 5px;
+}
+
+.popup__input_name {
+  font-size: 20px;
+  border: none;
+  border-bottom: 1px solid rgba(84, 84, 84, 1);
+  margin: 15px;
+  width: 350px;
+}
+
+.popup__label-name {
+  color: red;
+}
+
+.popup__input_about {
+  font-size: 20px;
+  border: none;
+  border-bottom: 1px solid rgba(84, 84, 84, 1);
+  margin: 15px;
+  width: 350px;
+}
+
+.popup__label-about {
+  color: red;
+}
+
+.popup__button_save {
+  background: rgba(0, 0, 0, 1);
+  color: white;
+  border: 1px solid gray;
+  transition: background-color 0.3s ease;
+  align-self: center;
+  font-size: 30px;
+  margin: 10px;
+  width: 93%;
+  padding: 15px;
+}
+
+.popup__button_save:hover {
+  opacity: 0.5;
+}
+
+.popup__button_save_disabled {
+  background-color: gray;
+  pointer-events: none;
+}
+
+.popup__button_close_image {
+  position: absolute;
+  right: -35px;
+  top: -50px;
+  background-color: transparent;
+  border: none;
+  font-size: 50px;
+  color: white;
+}
+
+.popup__button_close_image:hover {
+  opacity: 0.5;
+}
+
+.popup__image {
+  width: 60vw;
+  height: 60vh;
+}
+
+.popup__container {
+  /* display: flex; */
+  justify-content: center;
+  position: relative;
+  background-color: white;
+  max-width: 75vw;
+  max-height: 75vh;
+  top: 12%;
+  /* left: 10%; */
+}
+
+#popupContainerImage {
+  background-color: transparent;
+}
+
+.popup__title_image {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.popup__confirmation {
+  width: 430px;
+  background-color: white;
+  margin: 15px;
+  color: black;
+  padding: 15px;
+}
+
+.popup__confirm-button {
+  width: 93%;
+  font-size: 30px;
+  color: white;
+  background-color: black;
+}
+
+.popup__input_avatar {
+  padding: 10px;
+  width: 90%;
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+
+.popup__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10%;
+  width: fit-content;
+  margin: 0 auto;
+  position: relative;
+}
+
+@media screen and (max-width: 320px) {
+  .popup__form {
+    width: 230px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  .popup__input_name {
+    margin: 0;
+    width: 98%;
+  }
+
+  .popup__input_about {
+    margin: 0;
+    width: 98%;
+  }
+
+  .popup__button_close {
+    left: 220px;
+  }
+  .popup__container {
+    width: 90%;
+    font-size: 20px;
+  }
+}

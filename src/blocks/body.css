@@ -1,0 +1,17 @@
+body {
+  background: rgba(0, 0, 0, 1);
+  color: rgba(255, 255, 255, 1);
+  margin: auto;
+  font-family: "Inter";
+}
+
+.page {
+  max-width: 880px;
+  margin: auto;
+}
+
+@media screen and (max-width: 320px) {
+  .body {
+    max-width: 320px;
+  }
+}
