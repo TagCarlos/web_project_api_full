@@ -25,8 +25,11 @@ app.use("/cards", cardsRoutes);
 app.use((req, res) => {
   res.status(404).json({ "message": "Recurso solicitado no encontrado" })
 })
+//se cancela por que se utiliza app.post para que acepte solo ese metodo
+/* app.use("/signin", Login); */
 
-app.use("/signin", Login);
+app.post('/signin', Login);
+app.post('/signup', createUser);
 
 app.listen(3000, function () {
   console.log("Servidor encendido");

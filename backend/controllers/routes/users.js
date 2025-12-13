@@ -9,7 +9,8 @@ routes.get("/:id", getUserById);
 
 routes.get("/", getUsers);
 
-routes.post("/", createUser);
+// se elimina por que se creo directo en app.js
+/* routes.post("/", createUser); */
 
 routes.patch("/me", updateProfile);
 
