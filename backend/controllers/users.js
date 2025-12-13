@@ -1,5 +1,6 @@
 import User from "./models/user.js";
 import bcrypt from "bcrypt";
+import jwt from 'jsonwebtoken';
 
 //GET devuelve todos los usuarios
 export async function getUsers(req, res) {
@@ -70,3 +71,25 @@ export async function updateAvatar(req, res) {
     res.status(500).send({ message: "Error del servidor" });
   };
 };
+
+//autentifica el correo y contraseña 
+export async function login(req, res) {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email }).select("+password")
+    if (!user) {
+      return res.status(401).send({ message: "Correo electronico y/o contraseña incorrectos" })
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).send({ message: "Correo electronico y/o contraseña incorrectos" })
+    }
+
+    const token = jwt.sign({ _id: user._id }, "secretpassword", { expiresIn: "7d" });
+    res.send({ token });
+
+  } catch (error) {
+    res.status(500).send({ message: "Error del servidor" })
+  }
+}
