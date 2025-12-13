@@ -1,4 +1,5 @@
-import User from "../models/user.js";
+import User from "./models/user.js";
+import bcrypt from "bcrypt";
 
 //GET devuelve todos los usuarios
 export async function getUsers(req, res) {
@@ -22,8 +23,9 @@ export async function getUserById(req, res) {
 //POST crea nuevo usuario
 export async function createUser(req, res) {
   try {
-    const { name, about, avatar } = req.body;
-    const users = await User.create({ name, about, avatar });
+    const { name, about, avatar, email, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const users = await User.create({ name, about, avatar, email, password: hashedPassword });
     res.status(201).send(users);
   }
   catch (err) {

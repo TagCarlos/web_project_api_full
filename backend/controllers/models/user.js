@@ -4,25 +4,25 @@ import validator from 'validator';
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
     minlength: 2,
     maxlength: 30,
+    default: "Jacques Cousteau"
   },
   about: {
     type: String,
-    required: true,
     minlength: 2,
     maxlength: 30,
+    default: "Explorador"
   },
   avatar: {
     type: String,
-    required: true,
     validate: {
       validator: function (v) {
         return /^(https?:\/\/)[A-Za-z0-9._~:/?%#\[\]@!$&'()*+,;=]+$/
       },
       message: "Lo sentimos url no aceptada"
     },
+    default: "https://practicum-content.s3.us-west-1.amazonaws.com/resources/moved_avatar_1604080799.jpg"
   },
   email: {
     type: String,
