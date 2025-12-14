@@ -19,15 +19,20 @@ export async function createCard(req, res) {
   }
 };
 
-//DELETE borra la carta por Id de usuario
-export async function deleteCardById(req, res) {
+//DELETE borra la carta si eres dueño de la carta
+export async function deleteCard(req, res) {
   try {
     const { id: cardId } = req.params;
-    const card = await Card.findByIdAndDelete(cardId).orFail();
-    res.status(200).send(card);
+    const userId = req.user._id;
+    const card = await Card.findById(cardId).orFail();
+    if (card.owner.toString() !== userId.toString()) {
+      return res.status(403).send({ message: "No tienes permiso para eliminar la tarjeta" });
+    }
+    await Card.findByIdAndDelete(cardId);
+    res.status(200).send(card); //cambiar send por el mensaje de que se elimino con exito
 
   } catch (error) {
-    if (error === 'DocumentNotFoundError') {
+    if (error.name === 'DocumentNotFoundError') {
       return res.status(404).send({ message: "Tarjeta no encontrada" })
     }
     res.status(500).send({ message: "Error del servidor" });
