@@ -93,3 +93,16 @@ export async function login(req, res) {
     res.status(500).send({ message: "Error del servidor" })
   }
 }
+
+//GET para recibir información sobre el usuario actual
+export async function getCurrentUser(req, res) {
+  try {
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).send({ message: "Usuario no encontrado" });
+    }
+    res.send({ data: user });
+  } catch (error) {
+    res.status(500).send({ message: "Error en el servidor" })
+  }
+}
