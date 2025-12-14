@@ -6,13 +6,14 @@ import Login from "./src/components/Main/components/Login/Login.jsx";
 
 const app = express();
 
-app.use((req, res, next) => {
+//se elimina por que ya tenemos autorizacion 
+/* app.use((req, res, next) => {
   req.user = {
     _id: '690f52db791168ce6988edf1'
   };
 
   next();
-});
+}); */
 
 app.use(express.json());
 
