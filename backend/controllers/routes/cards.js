@@ -2,12 +2,14 @@ import express from "express";
 import fs from "fs/promises";
 import Card from "../models/card.js";
 import { getCards, createCard, deleteCard, likeCard, dislikeCard } from "../controllers/cards.js";
+import { celebrate } from "celebrate";
+import { validateCard } from "../../middleware/validation.js";
 
 const routes = express.Router();
 
 routes.get("/", getCards);
 
-routes.post("/", createCard);
+routes.post("/", celebrate(validateCard), createCard);
 
 routes.delete("/:id", deleteCard);
 
