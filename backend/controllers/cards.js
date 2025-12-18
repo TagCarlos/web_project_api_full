@@ -7,20 +7,21 @@ export async function getCards(req, res) {
 };
 
 //POST crea nueva tarjeta
-export async function createCard(req, res) {
+export async function createCard(req, res, next) {
   try {
     const { name, link } = req.body;
     const owner = req.user._id;
 
     const card = await Card.create({ name, link, owner });
     res.status(201).send(card)
-  } catch (error) {
-    res.status(400).send({ message: "Error al crear tarjeta" })
+  } catch (err) {
+    next(err);
+    /* res.status(400).send({ message: "Error al crear tarjeta" }) */
   }
 };
 
 //DELETE borra la carta si eres dueño de la carta
-export async function deleteCard(req, res) {
+export async function deleteCard(req, res, next) {
   try {
     const { id: cardId } = req.params;
     const userId = req.user._id;
@@ -31,16 +32,17 @@ export async function deleteCard(req, res) {
     await Card.findByIdAndDelete(cardId);
     res.status(200).send(card); //cambiar send por el mensaje de que se elimino con exito
 
-  } catch (error) {
-    if (error.name === 'DocumentNotFoundError') {
+  } catch (err) {
+    next(err);
+    /* if (error.name === 'DocumentNotFoundError') {
       return res.status(404).send({ message: "Tarjeta no encontrada" })
     }
-    res.status(500).send({ message: "Error del servidor" });
+    res.status(500).send({ message: "Error del servidor" }); */
   }
 };
 
 //PUT agrega like a la carta
-export const likeCard = async (req, res) => {
+export const likeCard = async (req, res, next) => {
   try {
     const card = await Card.findByIdAndUpdate(
       req.params.cardId,
@@ -48,19 +50,20 @@ export const likeCard = async (req, res) => {
       { new: true },
     ).orFail();
     res.status(200).send(card);
-  } catch (error) {
-    if (error.name === 'DocumentNotFoundError') {
-      return res.status(404).send({ message: "Tarjeta no encontrada" });
-    }
-    if (error.name === 'CastError') {
-      return res.status(400).send({ message: "ID de tarjeta inválido" });
-    }
-    res.status(500).send({ message: "Error del servidor" });
+  } catch (err) {
+    next(err);
+    /*  if (error.name === 'DocumentNotFoundError') {
+       return res.status(404).send({ message: "Tarjeta no encontrada" });
+     }
+     if (error.name === 'CastError') {
+       return res.status(400).send({ message: "ID de tarjeta inválido" });
+     }
+     res.status(500).send({ message: "Error del servidor" }); */
   };
 };
 
 //DELETE quita like a la carta
-export const dislikeCard = async (req, res) => {
+export const dislikeCard = async (req, res, next) => {
   try {
     const card = await Card.findByIdAndUpdate(
       req.params.cardId,
@@ -68,14 +71,15 @@ export const dislikeCard = async (req, res) => {
       { new: true },
     ).orFail();
     res.status(200).send(card);
-  } catch (error) {
-    if (error.name === 'DocumentNotFoundError') {
+  } catch (err) {
+    next(err);
+    /* if (error.name === 'DocumentNotFoundError') {
       return res.status(404).send({ message: "Tarjeta no encontrada" });
     }
     if (error.name === 'CastError') {
       return res.status(400).send({ message: "ID de tarjeta inválido" });
     }
-    res.status(500).send({ message: "Error del servidor" });
+    res.status(500).send({ message: "Error del servidor" }); */
   }
 
 }
