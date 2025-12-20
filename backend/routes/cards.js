@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import Card from "../models/card.js";
 import { getCards, createCard, deleteCard, likeCard, dislikeCard } from "../controllers/cards.js";
 import { celebrate } from "celebrate";
-import { validateCard } from "../../middleware/validation.js";
+import { validateCard } from "../middleware/validation.js";
 
 const routes = express.Router();
 

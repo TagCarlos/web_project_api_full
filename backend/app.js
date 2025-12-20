@@ -2,12 +2,16 @@ import express from "express";
 import usersRoutes from "./routes/users.js";
 import cardsRoutes from "./routes/cards.js";
 import mongoose from "mongoose";
-import Login from "./src/components/Main/components/Login/Login.jsx";
+import { login } from "./controllers/users.js";
 import { celebrate } from "celebrate";
-import { validateUserSignin, validateUserSignup } from "../backend/middleware/validation.js";
-import { requestLogger, errorLogger } from "../backend/middleware/logger.js";
+import { validateUserSignin, validateUserSignup } from "./middleware/validation.js";
+import { requestLogger, errorLogger } from "./middleware/logger.js";
+import { createUser } from "../backend/controllers/users.js"
+import cors from "cors";
 
 const app = express();
+app.use(cors());
+app.options('*', cors());
 
 //se elimina por que ya tenemos autorizacion 
 /* app.use((req, res, next) => {
@@ -24,10 +28,10 @@ app.use(express.json());
 mongoose.connect("mongodb://localhost:27017/aroundb")
 
 app.use(requestLogger);
+app.post('/signin', celebrate(validateUserSignin), login);
+app.post('/signup', celebrate(validateUserSignup), createUser);
 app.use("/users", usersRoutes);
 app.use("/cards", cardsRoutes);
-app.post('/signin', celebrate(validateUserSignin), Login);
-app.post('/signup', celebrate(validateUserSignup), createUser);
 
 app.use((req, res) => {
   res.status(404).json({ "message": "Recurso solicitado no encontrado" })

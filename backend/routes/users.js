@@ -1,7 +1,8 @@
 import express from "express";
 import fs from "fs/promises";
 import User from "../models/user.js"
-import { createUser, getUsers, getUserById, updateProfile, updateAvatar, authToken, getCurrentUser } from "../controllers/users.js";
+import { createUser, getUsers, getUserById, updateProfile, updateAvatar, getCurrentUser } from "../controllers/users.js";
+import { authToken } from "../middleware/auth.js";
 
 const routes = express.Router();
 
