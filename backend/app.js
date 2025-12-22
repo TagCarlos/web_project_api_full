@@ -11,7 +11,7 @@ import cors from "cors";
 
 const app = express();
 app.use(cors());
-app.options('*', cors());
+/* app.options('*', cors()); */
 
 //se elimina por que ya tenemos autorizacion 
 /* app.use((req, res, next) => {
