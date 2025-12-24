@@ -5,3 +5,10 @@ Descipción: pagina web que simula una red social donde puedes interactuar, regi
 tecnologias utilizadas: para el backend celebrate, cors, express, express-winston, moongose, validator, winston
 
 para el frontend react, eslint, vite
+
+para encontrar la pagina pueden escribirlo de la siguiente manera:
+aroundmx.com.mx.algoconcreto.com.mx
+
+o
+
+www.aroundmx.com.mx.algoconcreto.com.mx

@@ -4,12 +4,13 @@ import Card from "../models/card.js";
 import { getCards, createCard, deleteCard, likeCard, dislikeCard } from "../controllers/cards.js";
 import { celebrate } from "celebrate";
 import { validateCard } from "../middleware/validation.js";
+import { authToken } from "../middleware/auth.js";
 
 const routes = express.Router();
 
 routes.get("/", getCards);
 
-routes.post("/", celebrate(validateCard), createCard);
+routes.post("/", authToken, celebrate(validateCard), createCard);
 
 routes.delete("/:id", deleteCard);
 

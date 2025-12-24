@@ -9,8 +9,10 @@ class Api {
 
         return fetch(`${this.baseUrl}/users/me`, {
             method: "GET",
-            headers: this.headers
-            /* "Authorization": `Bearer ${token}` */
+            headers: {
+                ...this.headers,
+                Authorization: `Bearer ${token}`
+            }
 
         })
             .then(res => {
@@ -22,8 +24,13 @@ class Api {
     };
 
     getCardList() {
+        const token = localStorage.getItem('token');
         return fetch(`${this.baseUrl}/cards`, {
-            headers: this.headers,
+            method: "GET",
+            headers: {
+                ...this.headers,
+                Authorization: `Bearer ${token}`
+            }
         })
             .then(res => {
                 if (res.ok) {
@@ -33,9 +40,13 @@ class Api {
     };
 
     editProfile(name, about) {
+        const token = localStorage.getItem('token');
         return fetch(`${this.baseUrl}/users/me`, {
             method: "PATCH",
-            headers: this.headers,
+            headers: {
+                ...this.headers,
+                Authorization: `Bearer ${token}`
+            },
             body: JSON.stringify({
                 name,
                 about,
@@ -49,9 +60,13 @@ class Api {
     }
 
     addCard(name, link) {
+        const token = localStorage.getItem('token');
         return fetch(`${this.baseUrl}/cards`, {
             method: "POST",
-            headers: this.headers,
+            headers: {
+                ...this.headers,
+                Authorization: `Bearer ${token}`
+            },
             body: JSON.stringify({
                 name,
                 link,
@@ -65,9 +80,13 @@ class Api {
     }
 
     deleteCard(cardId) {
+        const token = localStorage.getItem('token');
         return fetch(`${this.baseUrl}/cards/${cardId}`, {
             method: "DELETE",
-            headers: this.headers,
+            headers: {
+                ...this.headers,
+                Authorization: `Bearer ${token}`
+            }
 
         })
             .then(res => {
@@ -79,10 +98,14 @@ class Api {
 
 
     addLike(cardId, isLiked) {
+        const token = localStorage.getItem('token');
         if (isLiked) {
             return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
                 method: "PUT",
-                headers: this.headers,
+                headers: {
+                    ...this.headers,
+                    Authorization: `Bearer ${token}`
+                }
             })
                 .then(res => {
                     if (res.ok) {
@@ -91,8 +114,12 @@ class Api {
                 });
         }
         return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
+
             method: "DELETE",
-            headers: this.headers,
+            headers: {
+                ...this.headers,
+                Authorization: `Bearer ${token}`
+            }
         })
             .then(res => {
                 if (res.ok) {
@@ -102,9 +129,13 @@ class Api {
     };
 
     avatarPhoto(avatar) {
+        const token = localStorage.getItem('token');
         return fetch(`${this.baseUrl}/users/me/avatar`, {
             method: "PATCH",
-            headers: this.headers,
+            headers: {
+                ...this.headers,
+                Authorization: `Bearer ${token}`
+            },
             body: JSON.stringify({
                 avatar,
             })

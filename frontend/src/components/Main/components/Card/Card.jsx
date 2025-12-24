@@ -14,6 +14,11 @@ export default function Card({ card, onCardLike, onCardDelete, ...props }) {
     children: <ImagePopup card={card} />,
   };
 
+  /* const isOwn = props.card.owner._id === currentUser._id;
+  const cardDeleteButtonClassName = `container__trash ${
+    isOwn ? "container__trash_active" : ""
+  }`; */
+
   const cardLikeButtonClassName = `container__heart ${
     card.isLiked ? `container__heart_active` : ""
   }`;
@@ -40,9 +45,10 @@ export default function Card({ card, onCardLike, onCardDelete, ...props }) {
           className={cardLikeButtonClassName}
           onClick={handleLikeClick}
         ></button>
-        <button className="container__trash" onClick={handleDeleteClick}>
-          {" "}
-        </button>
+        <button
+          className="container__trash"
+          onClick={handleDeleteClick}
+        ></button>
       </div>
     </div>
   );

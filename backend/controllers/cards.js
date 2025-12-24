@@ -1,13 +1,23 @@
 import Card from "../models/card.js";
+import fs from "fs/promises";
 
 //GET devuelve todas las tarjetas
-export async function getCards(req, res) {
+/* export async function getCards(req, res) {
   const cards = await fs.readFile("data/cards.json", "utf-8");
   res.send(cards)
-};
+}; */
+export async function getCards(req, res) {
+  try {
+    const cards = await Card.find({});
+    res.send(cards);
+  } catch (error) {
+    res.status(500).send({ message: "Error al obtener las tarjetas" });
+  }
+}
 
 //POST crea nueva tarjeta
 export async function createCard(req, res, next) {
+
   try {
     const { name, link } = req.body;
     const owner = req.user._id;
@@ -22,16 +32,17 @@ export async function createCard(req, res, next) {
 
 //DELETE borra la carta si eres dueño de la carta
 export async function deleteCard(req, res, next) {
+
   try {
     const { id: cardId } = req.params;
     const userId = req.user._id;
     const card = await Card.findById(cardId).orFail();
+
     if (card.owner.toString() !== userId.toString()) {
       return res.status(403).send({ message: "No tienes permiso para eliminar la tarjeta" });
     }
     await Card.findByIdAndDelete(cardId);
     res.status(200).send(card); //cambiar send por el mensaje de que se elimino con exito
-
   } catch (err) {
     next(err);
     /* if (error.name === 'DocumentNotFoundError') {

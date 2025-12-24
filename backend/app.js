@@ -2,12 +2,18 @@ import express from "express";
 import usersRoutes from "./routes/users.js";
 import cardsRoutes from "./routes/cards.js";
 import mongoose from "mongoose";
+import jwt from "jsonwebtoken";
+import { authToken } from "./middleware/auth.js";
 import { login } from "./controllers/users.js";
 import { celebrate } from "celebrate";
 import { validateUserSignin, validateUserSignup } from "./middleware/validation.js";
 import { requestLogger, errorLogger } from "./middleware/logger.js";
 import { createUser } from "../backend/controllers/users.js"
 import cors from "cors";
+import dotenv from "dotenv";
+dotenv.config();
+
+/* const { NODE_ENV, JWT_SECRET } = process.env; */
 
 const app = express();
 app.use(cors());

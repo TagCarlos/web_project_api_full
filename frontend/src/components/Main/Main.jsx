@@ -53,6 +53,9 @@ export default function Main({
   function handleClosePopup() {
     onOpenPopup(null);
   }
+  /*  cards.forEach((card, index) => {
+    console.log(`Card ${index}:`, card);
+  }); */
 
   return (
     <main>
@@ -110,7 +113,7 @@ export default function Main({
         </div>
       </section>
       <div className="container">
-        {cards.map((card) => (
+        {cards?.map((card) => (
           <Card
             key={card._id}
             card={card}

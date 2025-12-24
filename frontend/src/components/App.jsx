@@ -19,9 +19,8 @@ import InfoTooltip from "./Main/components/InfoTooltip/InfoTooltip.jsx";
 
 function App() {
   const api = new Api({
-    baseUrl: "https://around-api.es.tripleten-services.com/v1",
+    baseUrl: "api.aroundmx.com.mx.algoconcreto.com.mx",
     headers: {
-      authorization: "78875212-3ff1-4176-a379-657de165f703",
       "Content-Type": "application/json",
     },
   });
@@ -30,16 +29,31 @@ function App() {
   const [popup, setPopup] = useState(null);
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState({});
-  useEffect(() => {
+  /* useEffect(() => {
     (async () => {
       //colocar logica para verificar si hay un token en el localstorage
       const token = localStorage.getItem("token");
-      token !== null;
-      await api.getUserInfo().then((data) => {
+      if (!token) {
+        console.log("No hay token");
+        return;
+      }
+      token !== null; 
+      await api.getUserInfo(token).then((data) => {
         setCurrentUser(data);
       });
     })();
-  }, []);
+  }, []); */
+
+  /* useEffect(() => {
+    (async () => {
+      await api
+        .getUserInfo()
+        .then((data) => {
+          setCurrentUser(data);
+        })
+        .catch((error) => console.error(error));
+    })();
+  }, []); */
 
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
@@ -135,15 +149,6 @@ function App() {
     setIsInfoTooltipOpen(false);
   };
 
-  useEffect(() => {
-    api
-      .getUserInfo()
-      .then((userData) => {
-        setCurrentUser(userData);
-      })
-      .catch((e) => console.error(e));
-  }, []);
-
   const [cards, setCards] = useState([]);
   useEffect(() => {
     api
@@ -224,9 +229,7 @@ function App() {
             setIsLoggedIn(true);
             navigate("/");
             setToken(tokenFromStorage);
-            setCurrentUser((prevUser) => {
-              return { ...prevUser, email: response.data.email };
-            });
+            setCurrentUser(response.data);
           }
         } catch (error) {
           console.log(error);

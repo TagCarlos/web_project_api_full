@@ -26,4 +26,4 @@ dist-ssr
 # Backend specific
 backend/node_modules/
 backend/*.log
-backend/.env
+.env

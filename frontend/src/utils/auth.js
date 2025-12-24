@@ -1,4 +1,4 @@
-const BASE_URL = 'https://se-register-api.en.tripleten-services.com/v1';
+const BASE_URL = 'api.aroundmx.com.mx.algoconcreto.com.mx';
 
 
 export const register = (email, password) => {
@@ -38,7 +38,7 @@ export const checkToken = (token) => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
         },
     })
         .then((response) => {

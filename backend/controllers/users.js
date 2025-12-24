@@ -80,6 +80,7 @@ export async function updateAvatar(req, res, next) {
 export async function login(req, res, next) {
   try {
     const { email, password } = req.body;
+    /* const { NODE_ENV, JWT_SECRET } = process.env; */
     const user = await User.findOne({ email }).select("+password")
     if (!user) {
       return res.status(401).send({ message: "Correo electronico y/o contraseña incorrectos" })
@@ -90,7 +91,12 @@ export async function login(req, res, next) {
       return res.status(401).send({ message: "Correo electronico y/o contraseña incorrectos" })
     }
 
-    const token = jwt.sign({ _id: user._id }, "secretpassword", { expiresIn: "7d" });
+    const token = jwt.sign(
+      { _id: user._id },
+      /* NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', */
+      "eb28135ebcfc17578f96d4d65b6c7871f2c803be4180c165061d5c2db621c51b",
+      { expiresIn: "7d" }
+    );
     res.send({ token });
 
   } catch (err) {
