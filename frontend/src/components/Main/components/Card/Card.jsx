@@ -18,9 +18,12 @@ export default function Card({ card, onCardLike, onCardDelete, ...props }) {
   const cardDeleteButtonClassName = `container__trash ${
     isOwn ? "container__trash_active" : ""
   }`; */
+  const cardDeleteButtonClassName = `container__trash ${
+    card.isLiked ? `container__trash_active` : "container__trash"
+  }`;
 
   const cardLikeButtonClassName = `container__heart ${
-    card.isLiked ? `container__heart_active` : ""
+    card.isLiked ? `container__heart_active` : "container__heart"
   }`;
 
   const handleLikeClick = () => {
@@ -46,7 +49,7 @@ export default function Card({ card, onCardLike, onCardDelete, ...props }) {
           onClick={handleLikeClick}
         ></button>
         <button
-          className="container__trash"
+          className={cardDeleteButtonClassName}
           onClick={handleDeleteClick}
         ></button>
       </div>
