@@ -1,4 +1,4 @@
-const BASE_URL = 'api.aroundmx.com.mx.algoconcreto.com.mx';
+const BASE_URL = 'https://api.aroundmx.com.mx.algoconcreto.com.mx';
 
 
 export const register = (email, password) => {

@@ -19,7 +19,7 @@ import InfoTooltip from "./Main/components/InfoTooltip/InfoTooltip.jsx";
 
 function App() {
   const api = new Api({
-    baseUrl: "api.aroundmx.com.mx.algoconcreto.com.mx",
+    baseUrl: "https://api.aroundmx.com.mx.algoconcreto.com.mx",
     headers: {
       "Content-Type": "application/json",
     },
