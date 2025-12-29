@@ -12,10 +12,10 @@ routes.get("/", getCards);
 
 routes.post("/", authToken, celebrate(validateCard), createCard);
 
-routes.delete("/:id", deleteCard);
+routes.delete("/:id", authToken, deleteCard);
 
-routes.put("/:cardId/likes", likeCard);
+routes.put("/:cardId/likes", authToken, likeCard);
 
-routes.delete("/:cardId/likes", dislikeCard);
+routes.delete("/:cardId/likes", authToken, dislikeCard);
 
 export default routes;

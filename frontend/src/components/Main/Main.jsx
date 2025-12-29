@@ -57,6 +57,11 @@ export default function Main({
     console.log(`Card ${index}:`, card);
   }); */
 
+  // Agregar esta verificación al inicio del return
+  if (!currentUser) {
+    return <div>Cargando...</div>; // o cualquier componente de loading
+  }
+
   return (
     <main>
       <section className="header">
@@ -69,7 +74,7 @@ export default function Main({
               justifyContent: "center",
             }}
           >
-            {currentUser.email}{" "}
+            {currentUser?.email}{" "}
           </div>
           <div style={{ textAlign: "end" }}>
             <a className="header__login" href="signin">
@@ -82,7 +87,7 @@ export default function Main({
         </h1>
         <div className="header__container">
           <img
-            src={currentUser.avatar}
+            src={currentUser?.avatar}
             alt="avatar"
             className="header__image"
           />
@@ -93,8 +98,8 @@ export default function Main({
             onClick={() => onOpenPopup(editAvatarPopup)}
           />
           <div>
-            <h2 className="header__name">{currentUser.name} </h2>
-            <p className="header__activity">{currentUser.about} </p>
+            <h2 className="header__name">{currentUser?.name} </h2>
+            <p className="header__activity">{currentUser?.about} </p>
           </div>
           <button
             className="header__button header__button_edit"

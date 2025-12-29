@@ -44,7 +44,9 @@ export async function deleteCard(req, res, next) {
     await Card.findByIdAndDelete(cardId);
     res.status(200).send(card); //cambiar send por el mensaje de que se elimino con exito
   } catch (err) {
+    console.log("error al borrar", err)
     next(err);
+
     /* if (error.name === 'DocumentNotFoundError') {
       return res.status(404).send({ message: "Tarjeta no encontrada" })
     }
@@ -54,7 +56,9 @@ export async function deleteCard(req, res, next) {
 
 //PUT agrega like a la carta
 export const likeCard = async (req, res, next) => {
+
   try {
+
     const card = await Card.findByIdAndUpdate(
       req.params.cardId,
       { $addToSet: { likes: req.user._id } }, // agrega _id al array si aún no está ahí
@@ -62,6 +66,7 @@ export const likeCard = async (req, res, next) => {
     ).orFail();
     res.status(200).send(card);
   } catch (err) {
+    console.log("error de like", err);
     next(err);
     /*  if (error.name === 'DocumentNotFoundError') {
        return res.status(404).send({ message: "Tarjeta no encontrada" });

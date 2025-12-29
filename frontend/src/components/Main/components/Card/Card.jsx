@@ -8,26 +8,30 @@ export default function Card({ card, onCardLike, onCardDelete, ...props }) {
   const { onImageClick } = props;
 
   const { currentUser } = useContext(CurrentUserContext);
+  console.log("¿Contexto existe?", CurrentUserContext);
+  console.log("¿currentUser existe?", currentUser);
+  console.log("contenido de card", card);
 
   const imageComponent = {
     title: null,
     children: <ImagePopup card={card} />,
   };
 
-  /* const isOwn = props.card.owner._id === currentUser._id;
+  const isOwn = currentUser && card.owner === currentUser._id;
+  const isLiked = card.likes.includes(currentUser._id);
   const cardDeleteButtonClassName = `container__trash ${
     isOwn ? "container__trash_active" : ""
-  }`; */
-  const cardDeleteButtonClassName = `container__trash ${
-    card.isLiked ? `container__trash_active` : "container__trash"
   }`;
+  /* const cardDeleteButtonClassName = `container__trash ${
+    card.isLiked ? `container__trash_active` : ""
+  }`; */
 
   const cardLikeButtonClassName = `container__heart ${
-    card.isLiked ? `container__heart_active` : "container__heart"
+    isLiked ? `container__heart_active` : ""
   }`;
 
   const handleLikeClick = () => {
-    onCardLike(card);
+    onCardLike(card, isLiked);
   };
 
   const handleDeleteClick = () => {

@@ -89,9 +89,10 @@ function App() {
     children: <EditProfile />,
   };
 
-  const handleCardLike = async (card) => {
+  const handleCardLike = async (card, isLiked) => {
+    console.log("contenido de card", card);
     await api
-      .addLike(card._id, !card.isLiked)
+      .addLike(card._id, !isLiked)
       .then((newCard) => {
         setCards((state) =>
           state.map((currentCard) =>
