@@ -8,9 +8,6 @@ export default function Card({ card, onCardLike, onCardDelete, ...props }) {
   const { onImageClick } = props;
 
   const { currentUser } = useContext(CurrentUserContext);
-  console.log("¿Contexto existe?", CurrentUserContext);
-  console.log("¿currentUser existe?", currentUser);
-  console.log("contenido de card", card);
 
   const imageComponent = {
     title: null,
@@ -52,10 +49,12 @@ export default function Card({ card, onCardLike, onCardDelete, ...props }) {
           className={cardLikeButtonClassName}
           onClick={handleLikeClick}
         ></button>
-        <button
-          className={cardDeleteButtonClassName}
-          onClick={handleDeleteClick}
-        ></button>
+        {isOwn && (
+          <button
+            className={cardDeleteButtonClassName}
+            onClick={handleDeleteClick}
+          ></button>
+        )}
       </div>
     </div>
   );

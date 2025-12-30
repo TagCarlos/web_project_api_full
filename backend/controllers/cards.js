@@ -44,7 +44,7 @@ export async function deleteCard(req, res, next) {
     await Card.findByIdAndDelete(cardId);
     res.status(200).send(card); //cambiar send por el mensaje de que se elimino con exito
   } catch (err) {
-    console.log("error al borrar", err)
+
     next(err);
 
     /* if (error.name === 'DocumentNotFoundError') {
@@ -66,7 +66,7 @@ export const likeCard = async (req, res, next) => {
     ).orFail();
     res.status(200).send(card);
   } catch (err) {
-    console.log("error de like", err);
+
     next(err);
     /*  if (error.name === 'DocumentNotFoundError') {
        return res.status(404).send({ message: "Tarjeta no encontrada" });

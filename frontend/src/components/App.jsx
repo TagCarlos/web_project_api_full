@@ -90,7 +90,6 @@ function App() {
   };
 
   const handleCardLike = async (card, isLiked) => {
-    console.log("contenido de card", card);
     await api
       .addLike(card._id, !isLiked)
       .then((newCard) => {
