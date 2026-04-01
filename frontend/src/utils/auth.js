@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.aroundmx.com.mx.algoconcreto.com.mx';
+const BASE_URL = 'https://web-project-api-full-4vep.onrender.com';
 
 
 export const register = (email, password) => {
