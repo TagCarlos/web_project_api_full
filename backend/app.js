@@ -31,7 +31,7 @@ app.use(cors());
 app.use(express.json());
 
 //conecta con el servidor de MongoDB
-mongoose.connect("mongodb://localhost:27017/aroundb")
+mongoose.connect(process.env.MONGO_URI)
 
 app.use(requestLogger);
 app.post('/signin', celebrate(validateUserSignin), login);
