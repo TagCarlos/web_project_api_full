@@ -18,6 +18,8 @@ import ProtectedRoute from "./Main/components/ProtectedRoute/ProtectedRoute.jsx"
 import InfoTooltip from "./Main/components/InfoTooltip/InfoTooltip.jsx";
 
 function App() {
+  console.log("API URL:", process.env.REACT_APP_API_URL);
+  console.log("API:", process.env.REACT_APP_API);
   const api = new Api({
     baseUrl: process.env.REACT_APP_API,
     headers: {
