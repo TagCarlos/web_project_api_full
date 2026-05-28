@@ -17,8 +17,6 @@ import { register, authorize, checkToken } from "../utils/auth.js";
 import ProtectedRoute from "./Main/components/ProtectedRoute/ProtectedRoute.jsx";
 import InfoTooltip from "./Main/components/InfoTooltip/InfoTooltip.jsx";
 
-console.log("API URL:", import.meta.env.VITE_APP_API_URL);
-console.log("API:", import.meta.env.VITE_APP_API);
 function App() {
   const api = new Api({
     baseUrl: import.meta.env.VITE_APP_API,
