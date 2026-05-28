@@ -16,7 +16,11 @@ dotenv.config();
 /* const { NODE_ENV, JWT_SECRET } = process.env; */
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'https://web-project-api-full-tau.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 /* app.options('*', cors()); */
 
 //se elimina por que ya tenemos autorizacion 
