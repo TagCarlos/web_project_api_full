@@ -17,6 +17,8 @@ import { register, authorize, checkToken } from "../utils/auth.js";
 import ProtectedRoute from "./Main/components/ProtectedRoute/ProtectedRoute.jsx";
 import InfoTooltip from "./Main/components/InfoTooltip/InfoTooltip.jsx";
 
+console.log("API URL:", process.env.REACT_APP_API_URL);
+console.log("API:", process.env.REACT_APP_API);
 function App() {
   console.log("API URL:", process.env.REACT_APP_API_URL);
   console.log("API:", process.env.REACT_APP_API);
