@@ -19,7 +19,7 @@ import InfoTooltip from "./Main/components/InfoTooltip/InfoTooltip.jsx";
 
 function App() {
   const api = new Api({
-    baseUrl: "https://api.aroundmx.com.mx.algoconcreto.com.mx",
+    baseUrl: process.env.REACT_APP_API_URL,
     headers: {
       "Content-Type": "application/json",
     },
@@ -95,8 +95,8 @@ function App() {
       .then((newCard) => {
         setCards((state) =>
           state.map((currentCard) =>
-            currentCard._id === card._id ? newCard : currentCard
-          )
+            currentCard._id === card._id ? newCard : currentCard,
+          ),
         );
       })
       .catch((error) => console.error(error));
@@ -107,7 +107,7 @@ function App() {
       .deleteCard(card._id)
       .then(() => {
         setCards((state) =>
-          state.filter((currentCard) => currentCard._id !== card._id)
+          state.filter((currentCard) => currentCard._id !== card._id),
         );
       })
       .catch((error) => console.error(error));

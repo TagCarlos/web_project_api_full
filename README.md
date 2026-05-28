@@ -7,8 +7,4 @@ tecnologias utilizadas: para el backend celebrate, cors, express, express-winsto
 para el frontend react, eslint, vite
 
 para encontrar la pagina pueden escribirlo de la siguiente manera:
-aroundmx.com.mx.algoconcreto.com.mx
-
-o
-
-www.aroundmx.com.mx.algoconcreto.com.mx
+https://web-project-api-full-tau.vercel.app/signin
